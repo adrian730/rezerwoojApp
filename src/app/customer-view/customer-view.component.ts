@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import {AngularFireDatabase} from '@angular/fire/database';
+
 @Component({
   selector: 'app-customer-view',
   templateUrl: './customer-view.component.html',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private db: AngularFireDatabase) { }
 
   ngOnInit(): void {
+    
+    const thing = this.db.object('/').valueChanges();
+    thing.subscribe(console.log);
   }
 
 }
