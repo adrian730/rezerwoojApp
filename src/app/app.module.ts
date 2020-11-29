@@ -11,6 +11,13 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 
 
+import {environment} from '../environments/environment';
+import {AngularFireModule} from '@angular/fire';
+
+import {AngularFireDatabase, AngularFireDatabaseModule} from '@angular/fire/database';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +31,8 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
     AppRoutingModule,
     FormsModule,
     FlexLayoutModule,
-
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
