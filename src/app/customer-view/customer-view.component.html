@@ -1,6 +1,9 @@
 <div class="alert alert-primary" role="alert" fxLayout="row" fxLayoutAlign="space-between center" >
   <div>Witaj użytkowniku admin!</div>
   <div>
+    <img src="assets/rez.jpg">
+  </div>
+  <div>
     <button type="button" class="btn btn-outline-primary">
       <a routerLink="/login" routerLinkActive="active">Wyloguj!</a>
     </button>
@@ -13,68 +16,51 @@
 <div class="row" >
 
 
-  <div style="margin-right: 50px">
-    <div class="card" style="width: 18rem;">
-      <img src="assets/1.jpg" class="card-img-top" alt="...">
+  <div style="margin-right: 50px" *ngFor="let room of rooms$ | async">
+    <div class="card" style="width: 18rem; margin-top: 20px">
+      <img src="assets/{{room.image}}.jpg" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">CYPR Ayia Napa</h5>
-        <p class="card-text">Najkorzystniejszą porą na podróżowanie po Ayia Napa w Cypr jest od kwiecień...</p>
+        <h5 class="card-title">{{room.head}}</h5>
+        <p class="card-text">{{room.description}}</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">cena za apartament: {{room.price}} PLN</li>
+        <li class="list-group-item">Akceptacja zwierząt: {{room.pet}}</li>
         <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item">
+          <button [disabled]="!room.isActive" (click)="openModal()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+          Zarezerwuj mnie!
+        </button></li>
+
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+
+
       </div>
     </div>
   </div>
-
-
-  <div style="margin-right: 50px">
-    <div class="card" style="width: 18rem;">
-      <img src="assets/2.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">IZRAEL Tel Aviv</h5>
-        <p class="card-text">Tel Awiw-Jafa, zwyczajowo nazywane Tel Awiw – drugie pod względem wielkości miasto Izraela.</p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
-      <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
-      </div>
-    </div>
-  </div>
-
-
-  <div style="margin-right: 50px">
-    <div class="card" style="width: 18rem;">
-      <img src="assets/3.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">ZEA Dubai</h5>
-        <p class="card-text">Dubaj – największe miasto w Zjednoczonych Emiratach Arabskich. Stolica emiratu Dubai.</p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
-      <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
-      </div>
-    </div>
-  </div>
-
-
 
 </div>
+
 </div>
 
-
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Rezerwacja obiektu</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Czy napewno chcesz zarezerwować ten obiekt?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+        <button (click)="reserve()" type="button" class="btn btn-primary" data-dismiss="modal" >Rezerwuj</button>
+      </div>
+    </div>
+  </div>
+</div>
