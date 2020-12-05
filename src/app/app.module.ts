@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CustomerViewComponent } from './customer-view/customer-view.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -14,7 +14,7 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 
-import {AngularFireDatabase, AngularFireDatabaseModule} from '@angular/fire/database';
+import { AngularFireDatabaseModule} from '@angular/fire/database';
 
 
 
@@ -24,6 +24,7 @@ import {AngularFireDatabase, AngularFireDatabaseModule} from '@angular/fire/data
     CustomerViewComponent,
     LoginComponent,
     AdminViewComponent
+
   ],
   imports: [
     BrowserModule,
