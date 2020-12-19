@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-admin-view',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-view.component.css']
 })
 export class AdminViewComponent implements OnInit {
-
-  constructor() { }
+  roomObject: Observable<any>;
+  rooms$;
+  constructor(private db: AngularFireDatabase) { }
 
   ngOnInit(): void {
-  }
+    this.rooms$ = this.db.list('/rooms').valueChanges();
 
+    this.roomObject = this.db.object('/rooms').valueChanges();
+  }
+  cancel(){
+    const room3= this.db.object('/rooms/room3');
+    room3.update({ reserved: 'NIE', isAcive: true });
+    room3.update({ isActive: true });
+  }
 }

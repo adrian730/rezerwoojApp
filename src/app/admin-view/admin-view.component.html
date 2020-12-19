@@ -15,38 +15,19 @@
 
 <div class="container">
 
-<div>
+<div *ngFor="let room of rooms$ | async">
   <ul class="list-unstyled">
     <li class="media">
-      <img src="assets/1-1.jpg" class="mr-3" alt="...">
+      <img src="assets/{{room.imageSmall}}.jpg" class="mr-3" alt="...">
       <div class="media-body">
-        <h5 class="mt-0 mb-1">List-based media object</h5>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        <h5 class="mt-0 mb-1">{{room.head}}</h5>
+        {{room.description}}
       </div>
-      <button type="button" class="btn btn-danger" style="margin-right: 2px">odwołaj!</button>
+      <button [disabled]="room.isActive" (click)="cancel()" type="button" type="button" class="btn btn-danger" style="margin-right: 2px">odwołaj!</button>
       <button type="button" class="btn btn-success" style="margin-right: 2px">potwierdź</button>
       <button type="button" class="btn btn-primary">kontakt</button>
     </li>
-    <li class="media my-4">
-      <img src="assets/2-2.jpg"class="mr-3" alt="...">
-      <div class="media-body">
-        <h5 class="mt-0 mb-1">List-based media object</h5>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-      </div>
-      <button type="button" class="btn btn-danger" style="margin-right: 2px">odwołaj!</button>
-      <button type="button" class="btn btn-success" style="margin-right: 2px">potwierdź</button>
-      <button type="button" class="btn btn-primary">kontakt</button>
-    </li>
-    <li class="media">
-      <img src="assets/3-3.jpg" class="mr-3" alt="...">
-      <div class="media-body">
-        <h5 class="mt-0 mb-1">List-based media object</h5>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-      </div>
-      <button type="button" class="btn btn-danger" style="margin-right: 2px">odwołaj!</button>
-      <button type="button" class="btn btn-success" style="margin-right: 2px">potwierdź</button>
-      <button type="button" class="btn btn-primary">kontakt</button>
-    </li>
+
   </ul>
 </div>
 </div>
